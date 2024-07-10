@@ -7,7 +7,7 @@
 
 enum MotionTypes
 {
-	MT_Stationary , MT_Swaying , MT_Diagonal , MT_Parabolic , MT_MaxLimit = 4
+	MT_Stationary , MT_Swaying , MT_Diagonal , MT_Parabolic , MT_MaxLimit = 5
 };
 
 enum LevelMode
@@ -34,7 +34,7 @@ public:
     
 	bool checkOverlap(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) 
 		{	return (x1 < x2 + w2) && (x1 + w1 > x2) && (y1 < y2 + h2) && (y1 + h1 > y2);  }
-    void block() { dx = 0 ; dy = 0 ; }
+    void block() { x -= 3; y -= 3 ; }
     bool isPlatformHaveMotion( MotionTypes type ) const { return currentMotion == type ; }
     
     void updatePosition( int level_mode );

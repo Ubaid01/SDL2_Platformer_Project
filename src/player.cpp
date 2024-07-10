@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "player.h"
 #include "platform.h"
 
 Player::Player(double x, double y, int width, int height)
