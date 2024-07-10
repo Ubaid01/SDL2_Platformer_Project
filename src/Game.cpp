@@ -37,7 +37,7 @@ bool Game::init()
     }
     if ( !IMG_Init(IMG_INIT_PNG) )
     {
-        std::cerr << "PNG OR JPG Initialization has Failed! " << SDL_GetError() << std::endl;
+        std::cerr << "PNG Image Initialization has Failed! " << SDL_GetError() << std::endl;
         return false;
     }
     if (TTF_Init() == -1)
@@ -333,7 +333,7 @@ void Game::checkPlayerCollision()
 		else if( platforms[ currentPlatform].isPlatformHaveMotion(MT_Parabolic) )
 		{
 			player.setX( player.getX() + platforms[ currentPlatform ].getChangedX() ) ; 
-            if ( player.getVelocity().y <= 6 && player.getVelocity().y >= -6 )
+            if ( player.getVelocity().y <= 4 && player.getVelocity().y >= -4 )
                 player.setY( player.getY() + platforms[ currentPlatform ].getChangedY() ) ;
 		}
 	}
@@ -366,11 +366,13 @@ void Game::renderLevels()
     for (int i = 0; i < levels.getTotalLevels(); i++) 
 	{
         SDL_RenderCopy(renderer, textures["scoreBox"], nullptr, &levels.getLevelRect(i) );
-        DrawFont( modes[i] , levels.getLevelRect(i).x + 25, levels.getLevelRect(i).y + 15, levels.getLevelRect(i).w - 50, levels.getLevelRect(i).h - 30, levels.getLevelRect(i).h - 30, {0, 0, 0} ) ;
+        DrawFont( modes[i] , levels.getLevelRect(i).x + 25, levels.getLevelRect(i).y + 15, levels.getLevelRect(i).w - 50, levels.getLevelRect(i).h - 30, levels.getLevelRect(i).h - 30 , {0, 0, 0} ) ;
     }
     DrawFont( "Click to Select Mode", SCREEN_WIDTH / 3 + 5 , SCREEN_HEIGHT / 6 - 40 , 250, 40, 200, { 128 , 128 , 128 } ) ;
 
     SDL_RenderPresent(renderer);
+
+    modes.clear();
 }
 
 void Game::GetUserName( SDL_Event& event ) 
@@ -525,7 +527,7 @@ void Game::run()
 
         if (titleScreen) 
 		{
-            if (splashTimer > 120) 
+            if (splashTimer > 50) 
 			{
                 if (!playedSelect) 
 				{
@@ -558,8 +560,8 @@ void Game::run()
                 SDL_SetRenderDrawColor(renderer, 0.933 * 255, 0.894 * 255, 0.882 * 255, 1.0 * 255);
                 SDL_RenderClear(renderer);
 
-                DrawFont( "Platform_Prodigy", SCREEN_WIDTH / 2 - 105, SCREEN_HEIGHT / 2 + 3, 200, 40, 250, { 213, 128, 90 } ) ;
-                DrawFont("Elevate Your Limits", SCREEN_WIDTH / 2 - 105, SCREEN_HEIGHT / 2 + 40, 200, 40, 200, { 213, 128, 90 } );
+                DrawFont( "Platform_Prodigy", SCREEN_WIDTH / 2 - 105, SCREEN_HEIGHT / 2 + 3, 225, 40, 250, { 213, 128, 90 } ) ;
+                DrawFont("Elevate Your Limits", SCREEN_WIDTH / 2 - 111, SCREEN_HEIGHT / 2 + 40, 240, 40, 200, { 213, 128, 90 } );
 
                 SDL_Rect splashEggSprite_rect = { SCREEN_WIDTH / 2 - 16, SCREEN_HEIGHT / 2 - 16 - 23, 32, 32 };
                 SDL_RenderCopy(renderer, textures["player"], nullptr, &splashEggSprite_rect);
@@ -654,6 +656,7 @@ void Game::run()
 
             DrawFont(score, 28, 20, 75, 64, 64, { 0, 0, 0 });
             DrawFont(highscore, 17, 90, 74, 32, 32, { 0, 0, 0 });
+            DrawFont("Player : " + name, 10 , 120, 115, 25, 115, { 0, 0, 0 });
 
             SDL_RenderPresent(renderer);
         }
