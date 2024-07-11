@@ -9,8 +9,8 @@
 #include <map>
 #include <string>
 
-#include "player.h"
-#include "platform.h" 
+#include "Player.h"
+#include "Platform.h" 
 #include "levels.h"
 
 class Game 

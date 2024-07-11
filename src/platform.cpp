@@ -3,10 +3,6 @@
 #include <cmath>
 #include "player.h"
 
-#ifndef M_PI
-#define M_PI    3.14159265358979323846264338327950288 // To convert from radians to degrees M_PI / 180
-#endif // M_PI
-
 Platform::Platform( int index , int level_mode ) 
 
 {
