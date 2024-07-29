@@ -15,7 +15,7 @@ To play Platform Prodigy on Windows, ensure you have the following:
 ### Installation
 
 1. **Download the Game:**
-   - Download the setup from the below link :
+   - Download the setup from the below link OR using the `Release Section`:
    
         [Platform_Prodigy on Itch.io](https://obaid-01.itch.io/platform_prodigy)
 2. **Run the Setup:**
